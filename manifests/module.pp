@@ -26,7 +26,7 @@ define perl::module (
   ) {
 
   require perl
-  require perl::cpan
+  require perl::cpanminus
 
   $pkg_name = regsubst($name,'::','-')
   $real_package_name = $package_name ? {

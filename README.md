@@ -8,13 +8,15 @@ Official site: http://www.example42.com
 
 Official git repository: http://github.com/example42/puppet-perl
 
+Module development sponsored by [JobRapido](http://www.jobrapido.com)
+
 Released under the terms of Apache 2 License.
 
 This module requires the presence of Example42 Puppi module in your modulepath.
 
 ## USAGE - Modules installation
 
-* Install a module via CPAN (CPAN is automatically configured)
+* Install a module via CPAN (It uses cpanminus)
 
         perl::module { 'Path::Class': }
 
