@@ -18,7 +18,7 @@ define perl::module (
   $package_prefix      = $perl::package_prefix,
 
   $url                 = '',
-  $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin',
+  $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
   $exec_environment    = [],
   $exec_timeout        = '600',
 
