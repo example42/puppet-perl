@@ -22,9 +22,14 @@ class perl::params {
     default => 'perl',
   }
 
+  $doc_package = $::operatingsystem ? {
+    default => 'perl-doc',
+  }
+
   # General Settings
   $my_class = ''
   $version = 'present'
+  $doc_version = 'present'
   $absent = false
   $noops = false
 

@@ -56,7 +56,9 @@ class perl (
   $version             = params_lookup( 'version' ),
   $absent              = params_lookup( 'absent' ),
   $noops               = params_lookup( 'noops' ),
-  $package             = params_lookup( 'package' )
+  $package             = params_lookup( 'package' ),
+  $doc_package         = params_lookup( 'doc_package' ),
+  $doc_version         = params_lookup( 'doc_version' )
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
@@ -68,10 +70,22 @@ class perl (
     false => $perl::version,
   }
 
+  $manage_doc_package = $perl::bool_absent ? {
+    true  => 'absent',
+    false => $perl::doc_version,
+  }
+
   ### Managed resources
   if ! defined(Package[$perl::package]) {
     package { $perl::package:
       ensure  => $perl::manage_package,
+      noop    => $perl::bool_noops,
+    }
+  }
+
+  if $doc_package != '' and ! defined(Package[$perl::doc_package]) {
+    package { $perl::doc_package:
+      ensure  => $perl::manage_doc_package,
       noop    => $perl::bool_noops,
     }
   }
