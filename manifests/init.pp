@@ -75,6 +75,11 @@ class perl (
     false => $perl::doc_version,
   }
 
+  $cpan_require = $doc_package ? {
+    ''      => undef,
+    default => Package[$doc_package],
+  }
+
   ### Managed resources
   if ! defined(Package[$perl::package]) {
     package { $perl::package:

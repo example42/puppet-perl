@@ -9,6 +9,7 @@ class perl::cpanminus inherits perl {
     command => 'curl -L http://cpanmin.us | perl - App::cpanminus',
     unless  => 'perldoc -l App::cpanminus',
     timeout => 600,
+    require => $perl::cpan_require,
   }
 
 }
