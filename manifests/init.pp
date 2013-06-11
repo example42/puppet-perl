@@ -83,7 +83,7 @@ class perl (
     }
   }
 
-  if ($doc_package != '' and ! defined(Package[$perl::doc_package]) {
+  if $doc_package != '' and ! defined(Package[$perl::doc_package]) {
     package { $perl::doc_package:
       ensure  => $perl::manage_doc_package,
       noop    => $perl::bool_noops,
