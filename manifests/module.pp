@@ -65,6 +65,7 @@ define perl::module (
         path        => $exec_path,
         environment => $exec_environment,
         timeout     => $exec_timeout,
+        require     => $perl::cpan_require,
       }
     }
   }
