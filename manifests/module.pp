@@ -27,7 +27,6 @@ define perl::module (
   ) {
 
   require perl
-  require perl::cpanminus
 
   $pkg_name = regsubst($name,'::','-')
   $real_package_name = $package_name ? {
@@ -60,7 +59,14 @@ define perl::module (
       }
     }
     default: {
-      exec { "cpan-${name}-${ensure}":
+      exec { "ensure-cpanminus-${name}":
+        path        => ['/usr/bin/','/bin'],
+        command     => 'curl -L http://cpanmin.us | perl - App::cpanminus',
+        unless      => 'perldoc -l App::cpanminus',
+        timeout     => $exec_timeout,
+        environment => $exec_environment,
+        require     => $perl::cpan_require,
+      } -> exec { "cpan-${name}-${ensure}":
         command     => $cpan_command,
         unless      => $cpan_command_check,
         path        => $exec_path,
@@ -70,5 +76,4 @@ define perl::module (
       }
     }
   }
-
 }
