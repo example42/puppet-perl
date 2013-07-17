@@ -16,17 +16,32 @@ class perl::params {
 
   ### Application related parameters
   $cpan_mirror = 'http://www.perl.com/CPAN/'
-  $package_prefix = 'perl-'
 
-  $package = $::operatingsystem ? {
-    default => 'perl',
+  ### OS specific parameters
+  case $::operatingsystem {
+    /^(Debian|Ubuntu)$/ : {
+      $package        = 'perl'
+      $doc_package    = 'perl-doc'
+      $package_prefix = 'lib'
+      $package_suffix = '-perl'
+    }
+
+    /^(RedHat|CentOS)$/ : {
+      $package        = 'perl'
+      $doc_package    = 'perl'
+      $package_prefix = 'perl-'
+      $package_suffix = ''
+    }
+
+    default : {
+      $package = 'perl'
+      $doc_package = 'perl-doc'
+      $package_prefix = 'perl-'
+      $package_suffix = ''
+    }
   }
 
-  $doc_package = $::operatingsystem ? {
-    default => 'perl-doc',
-  }
-
-  # General Settings
+  ### General Settings
   $my_class = ''
   $version = 'present'
   $doc_version = 'present'
