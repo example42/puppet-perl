@@ -16,6 +16,7 @@ define perl::module (
   $use_package         = false,
   $package_name        = '',
   $package_prefix      = $perl::package_prefix,
+  $package_suffix      = $perl::package_suffix,
 
   $url                 = '',
   $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
@@ -30,7 +31,7 @@ define perl::module (
 
   $pkg_name = regsubst($name,'::','-')
   $real_package_name = $package_name ? {
-    ''      => "${package_prefix}${pkg_name}",
+    ''      => "${package_prefix}${pkg_name}${package_suffix}",
     default => $package_name,
   }
 

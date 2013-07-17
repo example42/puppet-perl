@@ -8,6 +8,10 @@
 # [*package_prefix*]
 #  Prefix in the name of perl modules, when installed via OS packages
 #
+# [*package_suffix*]
+#  Suffix in the name of perl modules, when installed via OS packages
+#
+#
 # Standard class parameters
 # Define the general class behaviour and customizations
 #
@@ -50,15 +54,16 @@
 #
 #
 class perl (
-  $cpan_mirror         = params_lookup( 'cpan_mirror' ),
-  $package_prefix      = params_lookup( 'package_prefix' ),
-  $my_class            = params_lookup( 'my_class' ),
-  $version             = params_lookup( 'version' ),
-  $absent              = params_lookup( 'absent' ),
-  $noops               = params_lookup( 'noops' ),
-  $package             = params_lookup( 'package' ),
-  $doc_package         = params_lookup( 'doc_package' ),
-  $doc_version         = params_lookup( 'doc_version' )
+  $cpan_mirror          = params_lookup( 'cpan_mirror' ),
+  $package_prefix       = params_lookup( 'package_prefix' ),
+  $package_suffix       = params_lookup( 'package_suffix' ),
+  $my_class             = params_lookup( 'my_class' ),
+  $version              = params_lookup( 'version' ),
+  $absent               = params_lookup( 'absent' ),
+  $noops                = params_lookup( 'noops' ),
+  $package              = params_lookup( 'package' ),
+  $doc_package          = params_lookup( 'doc_package' ),
+  $doc_version          = params_lookup( 'doc_version' )
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
