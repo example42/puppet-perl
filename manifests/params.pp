@@ -46,6 +46,6 @@ class perl::params {
   $version = 'present'
   $doc_version = 'present'
   $absent = false
-  $noops = false
+  $noops = undef
 
 }

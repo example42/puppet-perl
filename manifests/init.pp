@@ -33,7 +33,7 @@
 # [*noops*]
 #   Set noop metaparameter to true for all the resources managed by the module.
 #   Basically you can run a dryrun for this specific module if you set
-#   this to true. Default: false
+#   this to true. Default: undef
 #
 # Default class params - As defined in perl::params.
 # Note that these variables are mostly defined and used in the module itself,
@@ -67,7 +67,6 @@ class perl (
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
-  $bool_noops=any2bool($noops)
 
   ### Definition of some variables used in the module
   $manage_package = $perl::bool_absent ? {
@@ -89,14 +88,14 @@ class perl (
   if ! defined(Package[$perl::package]) {
     package { $perl::package:
       ensure  => $perl::manage_package,
-      noop    => $perl::bool_noops,
+      noop    => $perl::noops,
     }
   }
 
   if $doc_package != '' and ! defined(Package[$perl::doc_package]) {
     package { $perl::doc_package:
       ensure  => $perl::manage_doc_package,
-      noop    => $perl::bool_noops,
+      noop    => $perl::noops,
     }
   }
 
