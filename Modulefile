@@ -1,5 +1,5 @@
 name    'example42-perl'
-version '2.0.10'
+version '2.0.13'
 author  'Alessandro Franceschi'
 license 'Apache2'
 project_page 'http://www.example42.com'

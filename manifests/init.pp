@@ -8,6 +8,10 @@
 # [*package_prefix*]
 #  Prefix in the name of perl modules, when installed via OS packages
 #
+# [*package_suffix*]
+#  Suffix in the name of perl modules, when installed via OS packages
+#
+#
 # Standard class parameters
 # Define the general class behaviour and customizations
 #
@@ -29,7 +33,7 @@
 # [*noops*]
 #   Set noop metaparameter to true for all the resources managed by the module.
 #   Basically you can run a dryrun for this specific module if you set
-#   this to true. Default: false
+#   this to true. Default: undef
 #
 # Default class params - As defined in perl::params.
 # Note that these variables are mostly defined and used in the module itself,
@@ -50,19 +54,19 @@
 #
 #
 class perl (
-  $cpan_mirror         = params_lookup( 'cpan_mirror' ),
-  $package_prefix      = params_lookup( 'package_prefix' ),
-  $my_class            = params_lookup( 'my_class' ),
-  $version             = params_lookup( 'version' ),
-  $absent              = params_lookup( 'absent' ),
-  $noops               = params_lookup( 'noops' ),
-  $package             = params_lookup( 'package' ),
-  $doc_package         = params_lookup( 'doc_package' ),
-  $doc_version         = params_lookup( 'doc_version' )
+  $cpan_mirror          = params_lookup( 'cpan_mirror' ),
+  $package_prefix       = params_lookup( 'package_prefix' ),
+  $package_suffix       = params_lookup( 'package_suffix' ),
+  $my_class             = params_lookup( 'my_class' ),
+  $version              = params_lookup( 'version' ),
+  $absent               = params_lookup( 'absent' ),
+  $noops                = params_lookup( 'noops' ),
+  $package              = params_lookup( 'package' ),
+  $doc_package          = params_lookup( 'doc_package' ),
+  $doc_version          = params_lookup( 'doc_version' )
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
-  $bool_noops=any2bool($noops)
 
   ### Definition of some variables used in the module
   $manage_package = $perl::bool_absent ? {
@@ -84,14 +88,14 @@ class perl (
   if ! defined(Package[$perl::package]) {
     package { $perl::package:
       ensure  => $perl::manage_package,
-      noop    => $perl::bool_noops,
+      noop    => $perl::noops,
     }
   }
 
   if $doc_package != '' and ! defined(Package[$perl::doc_package]) {
     package { $perl::doc_package:
       ensure  => $perl::manage_doc_package,
-      noop    => $perl::bool_noops,
+      noop    => $perl::noops,
     }
   }
 
