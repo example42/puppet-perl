@@ -23,7 +23,8 @@ class perl::params {
   }
 
   $doc_package = $::operatingsystem ? {
-    default => 'perl-doc',
+    /(?i:RedHat|Centos|Scientific|Fedora)/ => '',
+    default                                => 'perl-doc',
   }
 
   # General Settings
