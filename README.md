@@ -16,20 +16,24 @@ This module requires the presence of Example42 Puppi module in your modulepath.
 
 ## USAGE - Modules installation
 
-* Install a module via CPAN (It uses cpanminus)
+* Install a module via CPAN Minus
 
         perl::module { 'Path::Class': }
 
-* Remove a module previously installed
+* Install a module via CPAN command
+
+        perl::cpan::module { 'Path::Class': }
+
+* Remove a module previously installed via CPAN Minus
 
         perl::module { 'Path::Class':
           ensure => absent,
         }
 
 * Install a module using the OS packages
- 
+
         perl::module { 'YAML::Perl':
-          use_package => true,  
+          use_package => true,
         }
 
 Note that the prefix name of the package (perl-) is automatically added and the :: are converted to -.
