@@ -86,11 +86,14 @@ class perl (
     false => $perl::cpan_version,
   }
 
-  $cpan_require = $doc_package ? {
-    ''      => undef,
-    default => Package[$doc_package],
+  $cpan_require = Exec['configure_cpan']
+
+  $cpanminus_require = $doc_package ? {
+    ''      => Package[$perl::package],
+    default => Package[$perl::doc_package],
   }
 
+  ### Managed resources
   ### Managed resources
   if ! defined(Package[$perl::package]) {
     package { $perl::package:

@@ -65,14 +65,14 @@ define perl::module (
         unless      => 'perldoc -l App::cpanminus',
         timeout     => $exec_timeout,
         environment => $exec_environment,
-        require     => $perl::cpan_require,
+        require     => $perl::cpanminus_require,
       } -> exec { "cpan-${name}-${ensure}":
         command     => $cpan_command,
         unless      => $cpan_command_check,
         path        => $exec_path,
         environment => $exec_environment,
         timeout     => $exec_timeout,
-        require     => $perl::cpan_require,
+        require     => $perl::cpanminus_require,
       }
     }
   }
