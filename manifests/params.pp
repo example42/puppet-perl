@@ -26,7 +26,7 @@ class perl::params {
       $package_suffix = '-perl'
     }
 
-    /^(RedHat|CentOS)$/ : {
+    /^(RedHat|CentOS|Amazon)$/ : {
       $package        = 'perl'
       $doc_package    = ''
       $package_prefix = 'perl-'
