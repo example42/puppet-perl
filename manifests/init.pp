@@ -63,7 +63,9 @@ class perl (
   $noops                = params_lookup( 'noops' ),
   $package              = params_lookup( 'package' ),
   $doc_package          = params_lookup( 'doc_package' ),
-  $doc_version          = params_lookup( 'doc_version' )
+  $doc_version          = params_lookup( 'doc_version' ),
+  $cpan_package         = params_lookup( 'cpan_package' ),
+  $cpan_version         = params_lookup( 'cpan_version' )
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
@@ -77,6 +79,11 @@ class perl (
   $manage_doc_package = $perl::bool_absent ? {
     true  => 'absent',
     false => $perl::doc_version,
+  }
+
+  $manage_cpan_package = $perl::bool_absent ? {
+    true  => 'absent',
+    false => $perl::cpan_version,
   }
 
   $cpan_require = $doc_package ? {

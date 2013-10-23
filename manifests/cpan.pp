@@ -4,8 +4,15 @@
 #
 class perl::cpan inherits perl {
 
+  if $cpan_package != '' and ! defined(Package[$perl::cpan_package]) {
+    package { $perl::cpan_package:
+      ensure  => $perl::manage_cpan_package,
+      noop    => $perl::noops,
+    }
+  }
+
   exec{ 'configure_cpan':
-    command => "/usr/bin/cpan <<EOF
+    command => "cpan <<EOF
 yes
 yes
 no
@@ -16,8 +23,9 @@ yes
 quit
 EOF",
     creates => '/root/.cpan/CPAN/MyConfig.pm',
-    require => Package[$perl::package],
+    require => [ Package[$perl::cpan_package] ],
     user    => root,
+    path    => '/bin:/sbin:/usr/bin:/usr/sbin',
     timeout => 600,
   }
 

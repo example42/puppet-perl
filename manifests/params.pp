@@ -22,6 +22,7 @@ class perl::params {
     /^(Debian|Ubuntu)$/ : {
       $package        = 'perl'
       $doc_package    = 'perl-doc'
+      $cpan_package   = 'perl'
       $package_prefix = 'lib'
       $package_suffix = '-perl'
     }
@@ -29,13 +30,15 @@ class perl::params {
     /^(RedHat|CentOS|Amazon)$/ : {
       $package        = 'perl'
       $doc_package    = ''
+      $cpan_package   = 'perl-CPAN'
       $package_prefix = 'perl-'
       $package_suffix = ''
     }
 
     default : {
-      $package = 'perl'
-      $doc_package = 'perl-doc'
+      $package        = 'perl'
+      $doc_package    = 'perl-doc'
+      $cpan_package   = 'perl'
       $package_prefix = 'perl-'
       $package_suffix = ''
     }
@@ -45,6 +48,7 @@ class perl::params {
   $my_class = ''
   $version = 'present'
   $doc_version = 'present'
+  $cpan_version = 'present'
   $absent = false
   $noops = undef
 
