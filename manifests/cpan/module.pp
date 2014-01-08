@@ -11,9 +11,12 @@
 # perl::cpan::module { packagename: }
 # Example:
 # perl::cpan::module { 'Net::SSLeay': }
+# Example :
+# perl::cpan::module  { 'Net::Address::Ethernet' : force => '-f' }
 #
 define perl::cpan::module (
   $use_package         = false,
+  $force               = '',
   $package_name        = '',
   $package_prefix      = $perl::package_prefix,
   $package_suffix      = $perl::package_suffix,
@@ -42,7 +45,7 @@ define perl::cpan::module (
   }
 
   $cpan_command = $ensure ? {
-    present => "cpan ${install_name}",
+    present => "cpan $force ${install_name}",
     absent  => "pm-uninstall -f ${name}",
   }
 
