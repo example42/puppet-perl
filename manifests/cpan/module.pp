@@ -24,6 +24,7 @@ define perl::cpan::module (
   $exec_timeout        = '600',
 
   $ensure              = 'present'
+  $force               = false,
   ) {
 
   include perl::cpan
@@ -41,8 +42,11 @@ define perl::cpan::module (
     default => $url,
   }
 
+  if($force) { $force_string = '-f' }
+  else       { $force_string = '' }
+
   $cpan_command = $ensure ? {
-    present => "cpan ${install_name}",
+    present => "cpan ${force_string} ${install_name}",
     absent  => "pm-uninstall -f ${name}",
   }
 
