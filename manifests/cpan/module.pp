@@ -23,7 +23,7 @@ define perl::cpan::module (
   $exec_environment    = [],
   $exec_timeout        = '600',
 
-  $ensure              = 'present'
+  $ensure              = 'present',
   $force               = false,
   ) {
 
