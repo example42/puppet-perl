@@ -27,6 +27,7 @@ EOF",
     user    => root,
     path    => '/bin:/sbin:/usr/bin:/usr/sbin',
     timeout => 600,
+    environment => [ 'HOME=/root' ],
   }
 
 }
