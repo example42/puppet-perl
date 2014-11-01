@@ -7,7 +7,6 @@ class perl::cpan inherits perl {
   if $perl::cpan_package != '' and ! defined(Package[$perl::cpan_package]) {
     package { $perl::cpan_package:
       ensure  => $perl::manage_cpan_package,
-      noop    => $perl::noops,
     }
   }
 

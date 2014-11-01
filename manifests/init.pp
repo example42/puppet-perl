@@ -30,11 +30,6 @@
 #   Set to 'true' to remove package(s) installed by module
 #   Can be defined also by the (top scope) variable $perl_absent
 #
-# [*noops*]
-#   Set noop metaparameter to true for all the resources managed by the module.
-#   Basically you can run a dryrun for this specific module if you set
-#   this to true. Default: undef
-#
 # Default class params - As defined in perl::params.
 # Note that these variables are mostly defined and used in the module itself,
 # overriding the default values might not affected all the involved components.
@@ -60,7 +55,6 @@ class perl (
   $my_class             = params_lookup( 'my_class' ),
   $version              = params_lookup( 'version' ),
   $absent               = params_lookup( 'absent' ),
-  $noops                = params_lookup( 'noops' ),
   $package              = params_lookup( 'package' ),
   $doc_package          = params_lookup( 'doc_package' ),
   $doc_version          = params_lookup( 'doc_version' ),
@@ -98,14 +92,12 @@ class perl (
   if ! defined(Package[$perl::package]) {
     package { $perl::package:
       ensure  => $perl::manage_package,
-      noop    => $perl::noops,
     }
   }
 
   if $doc_package != '' and ! defined(Package[$perl::doc_package]) {
     package { $perl::doc_package:
       ensure  => $perl::manage_doc_package,
-      noop    => $perl::noops,
     }
   }
 
