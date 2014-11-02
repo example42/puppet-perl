@@ -70,12 +70,6 @@ The actual package installed in this case is therefore: perl-YAML-Perl
           absent => true
         }
 
-* Module dry-run: Do not make any change on *all* the resources provided by the module
-
-        class { 'perl':
-          noops => true
-        }
-
 * Automatically include a custom subclass
 
         class { 'perl':

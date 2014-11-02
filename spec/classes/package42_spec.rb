@@ -20,9 +20,4 @@ describe 'perl' do
     it 'should remove Package[perl]' do should contain_package('perl').with_ensure('absent') end 
   end
 
-  describe 'Test noops mode' do
-    let(:params) { {:noops => true} }
-    it { should contain_package('perl').with_noop('true') }
-  end
-
 end
