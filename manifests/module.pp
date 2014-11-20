@@ -60,7 +60,7 @@ define perl::module (
     }
     default: {
       exec { "ensure-cpanminus-${name}":
-        path        => ['/usr/bin/','/bin'],
+        path        => $exec_path,
         command     => 'curl -L http://cpanmin.us | perl - App::cpanminus',
         unless      => 'perldoc -l App::cpanminus',
         timeout     => $exec_timeout,
