@@ -20,19 +20,21 @@ class perl::params {
   ### OS specific parameters
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/ : {
-      $package        = 'perl'
-      $doc_package    = 'perl-doc'
-      $cpan_package   = 'perl'
-      $package_prefix = 'lib'
-      $package_suffix = '-perl'
+      $package          = 'perl'
+      $doc_package      = 'perl-doc'
+      $cpan_package     = 'perl'
+      $package_prefix   = 'lib'
+      $package_suffix   = '-perl'
+      $package_downcase = true
     }
 
     /^(RedHat|CentOS|Amazon)$/ : {
-      $package        = 'perl'
-      $doc_package    = ''
-      $cpan_package   = 'perl-CPAN'
-      $package_prefix = 'perl-'
-      $package_suffix = ''
+      $package          = 'perl'
+      $doc_package      = ''
+      $cpan_package     = 'perl-CPAN'
+      $package_prefix   = 'perl-'
+      $package_suffix   = ''
+      $package_downcase = false
     }
 
     default : {

@@ -4,7 +4,7 @@
 #
 # Variables:
 # [*use_package*]
-#   (default=true) - Tries to install perl module with the relevant OS package
+#   (default=false) - Tries to install perl module with the relevant OS package
 #   If set to "no" it installs the module via a cpanm command
 #
 # Usage:
@@ -17,6 +17,7 @@ define perl::module (
   $package_name        = '',
   $package_prefix      = $perl::package_prefix,
   $package_suffix      = $perl::package_suffix,
+  $package_downcase    = $perl::package_downcase,
 
   $url                 = '',
   $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
@@ -28,7 +29,11 @@ define perl::module (
 
   require perl
 
-  $pkg_name = regsubst($name,'::','-')
+  $pkg_name = $package_downcase ? {
+    true  => downcase(regsubst($name,'::','-')),
+    false => regsubst($name,'::','-'),
+  }
+
   $real_package_name = $package_name ? {
     ''      => "${package_prefix}${pkg_name}${package_suffix}",
     default => $package_name,
