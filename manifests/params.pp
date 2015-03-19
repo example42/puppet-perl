@@ -52,5 +52,7 @@ class perl::params {
   $doc_version = 'present'
   $cpan_version = 'present'
   $absent = false
+  $modules = {}
+  $cpan_modules = {}
 
 }
