@@ -2,7 +2,10 @@
 #
 # This class configures cpan.
 #
-class perl::cpan inherits perl {
+class perl::cpan (
+  $exec_path = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
+  $exec_environment = [ 'HOME=/root' ],
+) inherits perl {
 
   if $perl::cpan_package != '' and ! defined(Package[$perl::cpan_package]) {
     package { $perl::cpan_package:
@@ -24,9 +27,9 @@ EOF",
     creates => '/root/.cpan/CPAN/MyConfig.pm',
     require => [ Package[$perl::cpan_package] ],
     user    => root,
-    path    => '/bin:/sbin:/usr/bin:/usr/sbin',
+    path    => $exec_path,
     timeout => 600,
-    environment => [ 'HOME=/root' ],
+    environment => $exec_environment,
   }
 
 }
