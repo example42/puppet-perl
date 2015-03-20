@@ -59,7 +59,9 @@ class perl (
   $doc_package          = params_lookup( 'doc_package' ),
   $doc_version          = params_lookup( 'doc_version' ),
   $cpan_package         = params_lookup( 'cpan_package' ),
-  $cpan_version         = params_lookup( 'cpan_version' )
+  $cpan_version         = params_lookup( 'cpan_version' ),
+  $module_hash          = params_lookup( 'module_hash' ),
+  $cpan_module_hash     = params_lookup( 'cpan_module_hash' )
   ) inherits perl::params {
 
   $bool_absent=any2bool($absent)
@@ -104,6 +106,17 @@ class perl (
   ### Include custom class if $my_class is set
   if $perl::my_class {
     include $perl::my_class
+  }
+
+  ### Integration with Hiera
+  if $module_hash != {} {
+    validate_hash($module_hash)
+    create_resources('perl::module', $module_hash)
+  }
+
+  if $cpan_module_hash != {} {
+    validate_hash($cpan_module_hash)
+    create_resources('perl::cpan::module', $cpan_module_hash)
   }
 
 }

@@ -27,7 +27,7 @@ define perl::module (
   $ensure              = 'present'
   ) {
 
-  require perl
+  include perl
 
   $pkg_name = $package_downcase ? {
     true  => downcase(regsubst($name,'::','-')),
