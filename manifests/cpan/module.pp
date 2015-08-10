@@ -58,8 +58,8 @@ define perl::cpan::module (
   case $bool_use_package {
     true: {
       package { "perl-${name}":
-        ensure  => $ensure,
-        name    => $real_package_name,
+        ensure => $ensure,
+        name   => $real_package_name,
       }
     }
     default: {
