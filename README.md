@@ -51,6 +51,11 @@ The actual package installed in this case is therefore: perl-YAML-Perl
           exec_environment => [ "http_proxy=http://proxy.example42.com:8080" , "https_proxy=https://proxy.example42.com:8080" ],
         }
 
+* Specify an alternate command to check for existence of the module
+
+		perl::cpan::module { 'Bundle::LWP':
+		  module_check_cmd => "perldoc -l LWP",
+		}
 
 ## USAGE - Basic management
 

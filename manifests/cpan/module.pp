@@ -17,6 +17,7 @@ define perl::cpan::module (
   $package_name        = '',
   $package_prefix      = $perl::package_prefix,
   $package_suffix      = $perl::package_suffix,
+  $module_check_cmd    = "perldoc -l ${name}",
 
   $url                 = '',
   $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
@@ -51,8 +52,8 @@ define perl::cpan::module (
   }
 
   $cpan_command_check = $ensure ? {
-    present => "perldoc -l ${name}",
-    absent  => "perldoc -l ${name} || true",
+    present => $module_check_cmd,
+    absent  => "${module_check_cmd} || true",
   }
 
   case $bool_use_package {
