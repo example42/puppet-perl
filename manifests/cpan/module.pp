@@ -52,7 +52,7 @@ define perl::cpan::module (
   }
 
   $cpan_command_check = $ensure ? {
-    present => "${module_check_cmd}",
+    present => $module_check_cmd,
     absent  => "${module_check_cmd} || true",
   }
 
