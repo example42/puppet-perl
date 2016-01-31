@@ -14,11 +14,11 @@
 #
 define perl::cpan::module (
   $use_package         = false,
-  $package_name        = '',
+  $package_name        = 'package_default',
   $package_prefix      = $perl::package_prefix,
   $package_suffix      = $perl::package_suffix,
 
-  $url                 = '',
+  $url                 = 'url_default',
   $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
   $exec_environment    = [],
   $exec_timeout        = '600',
@@ -27,32 +27,32 @@ define perl::cpan::module (
   $force               = false,
   ) {
 
-  include perl::cpan
+  include ::perl::cpan
 
   $pkg_name = regsubst($name,'::','-')
   $real_package_name = $package_name ? {
-    ''      => "${package_prefix}${pkg_name}${package_suffix}",
-    default => $package_name,
+    'package_default' => "${package_prefix}${pkg_name}${package_suffix}",
+    default           => $package_name,
   }
 
   $bool_use_package = any2bool($use_package)
 
   $install_name = $url ? {
-    ''      => $name,
-    default => $url,
+    'url_default' => $name,
+    default       => $url,
   }
 
   if($force) { $force_string = '-f' }
-  else       { $force_string = '' }
+  else       { $force_string = ' ' }
 
   $cpan_command = $ensure ? {
-    present => "cpan ${force_string} ${install_name}",
-    absent  => "pm-uninstall -f ${name}",
+    'present' => "cpan ${force_string} ${install_name}",
+    'absent'  => "pm-uninstall -f ${name}",
   }
 
   $cpan_command_check = $ensure ? {
-    present => "perldoc -l ${name}",
-    absent  => "perldoc -l ${name} || true",
+    'present' => "perldoc -l ${name}",
+    'absent'  => "perldoc -l ${name} || true",
   }
 
   case $bool_use_package {

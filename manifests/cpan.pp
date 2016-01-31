@@ -3,9 +3,9 @@
 # This class configures cpan.
 #
 class perl::cpan (
-  $exec_path = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
+  $exec_path        = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
   $exec_environment = [ 'HOME=/root' ],
-  $exec_command = ''
+  $exec_command     = 'exec_default',
 ) inherits perl {
 
   $default_exec_command = "cpan <<EOF
@@ -20,8 +20,8 @@ quit
 EOF"
 
   $real_exec_command = $exec_command ? {
-    ''      => $default_exec_command,
-    default => $exec_command,
+    'exec_default' => $default_exec_command,
+    default        => $exec_command,
   }
 
   if $perl::cpan_package != '' and ! defined(Package[$perl::cpan_package]) {
