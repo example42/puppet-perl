@@ -8,16 +8,18 @@
 #   If set to "no" it installs the module via a cpanm command
 #
 # Usage:
+# include perl 
 # perl::module { packagename: }
+#
 # Example:
 # perl::module { 'Net::SSLeay': }
 #
 define perl::module (
   $use_package         = false,
   $package_name        = 'package_default',
-  $package_prefix      = $perl::package_prefix,
-  $package_suffix      = $perl::package_suffix,
-  $package_downcase    = $perl::package_downcase,
+  $package_prefix      = $::perl::package_prefix,
+  $package_suffix      = $::perl::package_suffix,
+  $package_downcase    = $::perl::package_downcase,
 
   $url                 = 'url_default',
   $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
@@ -27,7 +29,7 @@ define perl::module (
   $ensure              = 'present'
   ) {
 
-    include ::perl
+  include ::perl
 
   $pkg_name = $package_downcase ? {
     true  => downcase(regsubst($name,'::','-')),
@@ -70,14 +72,14 @@ define perl::module (
         unless      => 'perldoc -l App::cpanminus',
         timeout     => $exec_timeout,
         environment => $exec_environment,
-        require     => $perl::cpanminus_require,
+        require     => $::perl::cpanminus_require,
       } -> exec { "cpan-${name}-${ensure}":
         command     => $cpan_command,
         unless      => $cpan_command_check,
         path        => $exec_path,
         environment => $exec_environment,
         timeout     => $exec_timeout,
-        require     => $perl::cpanminus_require,
+        require     => $::perl::cpanminus_require,
       }
     }
   }

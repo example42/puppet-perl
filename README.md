@@ -18,10 +18,11 @@ This module requires the presence of Example42 Puppi module in your modulepath.
 
 * Install a module via CPAN Minus
 
-        perl::module { 'Path::Class': }
+        include ::perl # You need the perl main class to be already evaluated         perl::module { 'Path::Class': }
 
 * Install a module via CPAN command
 
+        include ::perl
         perl::cpan::module { 'Path::Class': }
 
 * Remove a module previously installed via CPAN Minus
