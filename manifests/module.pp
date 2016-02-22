@@ -32,8 +32,8 @@ define perl::module (
   include ::perl
 
   $pkg_name = $package_downcase ? {
-    true  => downcase(regsubst($name,'::','-')),
-    false => regsubst($name,'::','-'),
+    true  => downcase(regsubst($name,'::','-','G')),
+    false => regsubst($name,'::','-','G'),
   }
 
   $real_package_name = $package_name ? {
