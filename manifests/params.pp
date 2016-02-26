@@ -18,8 +18,8 @@ class perl::params {
   $cpan_mirror = 'http://www.perl.com/CPAN/'
 
   ### OS specific parameters
-  case $::operatingsystem {
-    /^(Debian|Ubuntu)$/ : {
+  case $::osfamily {
+    Debian : {
       $package          = 'perl'
       $doc_package      = 'perl-doc'
       $cpan_package     = 'perl'
@@ -28,7 +28,7 @@ class perl::params {
       $package_downcase = true
     }
 
-    /^(RedHat|CentOS|Amazon)$/ : {
+    RedHat : {
       $package          = 'perl'
       $doc_package      = ''
       $cpan_package     = 'perl-CPAN'
