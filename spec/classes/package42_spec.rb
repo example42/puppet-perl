@@ -20,4 +20,9 @@ describe 'perl' do
     it 'should remove Package[perl]' do should contain_package('perl').with_ensure('absent') end 
   end
 
+  describe 'Test minimal installtion on Solaris' do
+    let(:facts) { { :osfamily => 'Solaris', :operatingsystemmajrelease => '11' } }
+    it { should contain_package('runtime/perl-512').with_ensure('present') }
+  end
+
 end

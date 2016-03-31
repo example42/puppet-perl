@@ -19,7 +19,7 @@ define perl::cpan::module (
   $package_suffix      = $perl::package_suffix,
 
   $url                 = 'url_default',
-  $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
+  $exec_path           = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/csw/bin:/usr/perl5/bin',
   $exec_environment    = [],
   $exec_timeout        = '600',
 

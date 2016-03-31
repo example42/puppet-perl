@@ -3,7 +3,7 @@
 # This class configures cpan.
 #
 class perl::cpan (
-  $exec_path        = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin',
+  $exec_path        = '/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin:/opt/csw/bin:/usr/perl5/bin',
   $exec_environment = [ 'HOME=/root' ],
   $exec_command     = 'exec_default',
 ) inherits perl {

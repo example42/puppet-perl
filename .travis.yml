@@ -35,4 +35,3 @@ matrix:
 notifications:
   email:
     - al@lab42.it
-gemfile: .gemfile

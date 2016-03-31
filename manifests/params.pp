@@ -19,7 +19,7 @@ class perl::params {
 
   ### OS specific parameters
   case $::osfamily {
-    Debian : {
+    'Debian' : {
       $package          = 'perl'
       $doc_package      = 'perl-doc'
       $cpan_package     = 'perl'
@@ -28,13 +28,34 @@ class perl::params {
       $package_downcase = true
     }
 
-    RedHat : {
+    'RedHat' : {
       $package          = 'perl'
       $doc_package      = ''
       $cpan_package     = 'perl-CPAN'
       $package_prefix   = 'perl-'
       $package_suffix   = ''
       $package_downcase = false
+    }
+
+    'Solaris' : {
+      case $::operatingsystemmajrelease {
+        '10' : {
+          $package          = 'CSWperl'
+          $doc_package      = 'CSWperldoc'
+          $cpan_package     = 'CSWperl'
+          $package_prefix   = 'CSWpm-'
+          $package_suffix   = '-perl'
+          $package_downcase = true
+        }
+        '11' : {
+          $package          = 'runtime/perl-512'
+          $doc_package      = ''
+          $cpan_package     = ''
+          $package_prefix   = 'library/perl-5/'
+          $package_suffix   = ''
+          $package_downcase = true
+        }
+      }
     }
 
     default : {
