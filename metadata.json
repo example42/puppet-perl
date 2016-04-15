@@ -1,0 +1,21 @@
+{
+  "name": "example42-perl",
+  "version": "2.0.22",
+  "summary": "Puppet module for perl",
+  "author": "Alessandro Franceschi",
+  "description": "This module installs and manages perl. Check README for details.",
+  "dependencies": [
+    {
+      "name": "example42/puppi",
+      "version_requirement": ">= 2.0.0"
+    }
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+  },
+  "source": "https://github.com/example42/puppet-perl",
+  "project_page": "http://www.example42.com",
+  "license": "Apache2"
+}
