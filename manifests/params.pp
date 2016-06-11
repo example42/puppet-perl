@@ -19,7 +19,7 @@ class perl::params {
 
   ### OS specific parameters
   case $::osfamily {
-    Debian : {
+    'Debian' : {
       $package          = 'perl'
       $doc_package      = 'perl-doc'
       $cpan_package     = 'perl'
@@ -28,7 +28,7 @@ class perl::params {
       $package_downcase = true
     }
 
-    RedHat : {
+    'RedHat' : {
       $package          = 'perl'
       $doc_package      = ''
       $cpan_package     = 'perl-CPAN'
