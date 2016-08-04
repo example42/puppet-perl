@@ -17,5 +17,5 @@
   },
   "source": "https://github.com/example42/puppet-perl",
   "project_page": "http://www.example42.com",
-  "license": "Apache2"
+  "license": "Apache-2.0"
 }
