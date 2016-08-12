@@ -1,6 +1,6 @@
 {
   "name": "example42-perl",
-  "version": "2.0.23",
+  "version": "2.0.24",
   "summary": "Puppet module for perl",
   "author": "Alessandro Franceschi",
   "description": "This module installs and manages perl. Check README for details.",
