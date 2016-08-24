@@ -50,9 +50,9 @@ define perl::module (
   }
 
   $cpan_opts = $no_test ? {
-    true  => "--notest",
-    false => "",
-  } 
+    true  => '--notest',
+    false => '',
+  }
 
   $cpan_command = $ensure ? {
     'present' => "cpanm ${cpan_opts} ${install_name}",
