@@ -15,6 +15,7 @@
 # perl::module { 'Net::SSLeay': }
 #
 define perl::module (
+  $no_test             = false,
   $use_package         = false,
   $package_name        = 'package_default',
   $package_prefix      = $::perl::package_prefix,
@@ -48,8 +49,13 @@ define perl::module (
     default       => $url,
   }
 
+  $cpan_opts = $no_test ? {
+    true  => "--notest",
+    false => "",
+  } 
+
   $cpan_command = $ensure ? {
-    'present' => "cpanm ${install_name}",
+    'present' => "cpanm ${cpan_opts} ${install_name}",
     'absent'  => "pm-uninstall -f ${name}",
   }
 
