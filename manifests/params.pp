@@ -38,11 +38,12 @@ class perl::params {
     }
 
     default : {
-      $package        = 'perl'
-      $doc_package    = 'perl-doc'
-      $cpan_package   = 'perl'
-      $package_prefix = 'perl-'
-      $package_suffix = ''
+      $package          = 'perl'
+      $doc_package      = 'perl-doc'
+      $cpan_package     = 'perl'
+      $package_prefix   = 'perl-'
+      $package_suffix   = ''
+      $package_downcase = false
     }
   }
 
