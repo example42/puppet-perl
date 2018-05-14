@@ -104,7 +104,7 @@ class perl (
   }
 
   ### Include custom class if $my_class is set
-  if $perl::my_class != '' {
+  if $perl::my_class and $perl::my_class != '' { 
     include $perl::my_class
   }
 
